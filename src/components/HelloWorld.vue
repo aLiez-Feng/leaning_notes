@@ -1,33 +1,43 @@
 <template>
-  <h1>{{ msg }}</h1>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Documentation
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
-
-  <button type="button" @click="state.count++">count is: {{ state.count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  <div class="md_editor_wrap">
+    <v-md-preview :text="html"></v-md-preview>
+  </div>
+  <div>{{ text }}</div>
 </template>
 
-<script setup>
-import { defineProps, reactive } from 'vue'
+<script>
+import { reactive, toRefs } from "vue";
+import { html } from "../../public/md/Vue3_1.md";
 
-defineProps({
-  msg: String
-})
+export default {
+  name: "day1",
+  components: {},
+  beforeCreate() {
+    console.log("----beforeCreate----");
+  },
+  created() {
+    console.log("----created----");
+  },
+  setup() {
+    console.log("----setup----");
+    console.log(this); //undefined
+    const text = "111";
+    const state = reactive({
+      count: 0,
+      notHaveHtml: "",
+    });
 
-const state = reactive({ count: 0 })
+    return {
+      ...toRefs(state),
+      html,
+      text,
+    };
+  },
+};
 </script>
 
-<style scoped>
-a {
-  color: #42b983;
+<style lang="css" scoped>
+.md_editor_wrap {
+  width: 100%;
 }
 </style>

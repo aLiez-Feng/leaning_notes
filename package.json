@@ -6,6 +6,8 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@kangc/v-md-editor": "^2.3.7",
+    "vite-plugin-markdown": "^2.0.2",
     "vue": "^3.0.5"
   },
   "devDependencies": {
